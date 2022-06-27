@@ -1,86 +1,162 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Link from "next/link";
+import Button from "../components/UI/Button";
+import Card from "../components/UI/Card";
+
+const ACKNOWLEDGEMENTS = [
+  {
+    label: "Dither It (website)",
+    href: "https://ditherit.com/",
+  },
+  {
+    label: "Dither Me This (website)",
+    href: "https://doodad.dev/dither-me-this/",
+  },
+  {
+    label: "Dither Me This (library)",
+    href: "https://github.com/ShadowfaxRodeo/dither-me-this",
+  },
+  {
+    label:
+      "Ditherpunk — The article I wish I had about monochrome image dithering (article)*",
+    href: "https://surma.dev/things/ditherpunk/index.html",
+  },
+];
+
+const LIBRARIES = [
+  {
+    label: "Framer Motion",
+    href: "https://www.framer.com/motion/",
+  },
+  {
+    label: "use-async-memo",
+    href: "https://github.com/awmleer/use-async-memo",
+  },
+  {
+    label: "Radix Icons",
+    href: "https://icons.radix-ui.com/",
+  },
+  {
+    label: "Radix UI",
+    href: "https://www.radix-ui.com/",
+  },
+  {
+    label: "Tailwind Radix",
+    href: "https://tailwindcss-radix.vercel.app/",
+  },
+  {
+    label: "image-q*",
+    href: "https://github.com/ibezkrovnyi/image-quantization",
+  },
+  {
+    label: "React Colorful **",
+    href: "https://github.com/royeden/react-colorful/tree/merge-all-pending-prs-dist",
+  },
+];
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <Head>
-        <title>Create Next App</title>
+        <title>Home — Layered Dithering</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <main className="flex w-full flex-1 flex-col py-6 px-6 md:items-center">
+        <Card className="flex h-full max-w-lg flex-col items-center space-y-6 rounded-lg">
+          <h1 className="text-center text-6xl font-bold text-gray-800 dark:text-white">
+            Layered Dithering
+          </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
+          <section id="acknowledgements" className="space-y-4">
+            <p className="text-center sm:text-center">
+              This app wouldn&apos;t be possible without these projects and
+              articles that were used as inspiration:
             </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
+            <article className="flex w-full flex-wrap justify-center rounded-md bg-gray-100 p-4 dark:bg-gray-700">
+              {ACKNOWLEDGEMENTS.map(({ label, href }) => (
+                <Button
+                  key={href}
+                  as="a"
+                  className="underline"
+                  external
+                  href={href}
+                  size="sm"
+                  theme="transparent"
+                >
+                  {label}
+                </Button>
+              ))}
+              <div className="mt-2 flex flex-col space-y-2">
+                <small className="text-sm">
+                  * Got this one from the{" "}
+                  <Button
+                    as="a"
+                    className="py-1 px-0.5 underline"
+                    external
+                    href="https://ditherit.com/resources/"
+                    size="none"
+                    theme="none"
+                  >
+                    resources of Dither It
+                  </Button>
+                  .
+                </small>
+              </div>
+            </article>
+            <p className="text-center sm:text-center">
+              And these awesome component libraries as well:
             </p>
-          </a>
+            <article className="flex w-full flex-wrap justify-center rounded-md bg-gray-100 p-4 dark:bg-gray-700">
+              {LIBRARIES.map(({ label, href }) => (
+                <Button
+                  key={href}
+                  as="a"
+                  className="underline"
+                  external
+                  href={href}
+                  size="sm"
+                  theme="transparent"
+                >
+                  {label}
+                </Button>
+              ))}
+              <div className="mt-2 flex flex-col space-y-2">
+                <small className="text-sm">
+                  * To be implemented in the near future! (their code is much
+                  better than mine and it works much faster, this website is
+                  just an experiment to test building most of it manually).
+                </small>
+                <small className="text-sm">
+                  ** Forked and merged all the contributions that were pending
+                  &amp; made some adjustments.
+                </small>
+              </div>
+            </article>
+          </section>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
+          {/* TODO add index page */}
+          <Link href="/app" passHref>
+            <Button as="a" className="max-w-xs" size="lg">
+              Go to the app!
+            </Button>
+          </Link>
+        </Card>
+        {/* <p className="mt-3 text-lg">
+          An app that allows you to create images with html
+          <Button
+            as="a"
+            external
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial"
+            theme="tertiary"
           >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+            <code className="font-mono">canvas</code>.
+          </Button>
+        </p> */}
       </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
