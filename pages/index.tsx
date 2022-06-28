@@ -46,11 +46,15 @@ const LIBRARIES = [
     href: "https://tailwindcss-radix.vercel.app/",
   },
   {
-    label: "image-q*",
+    label: "clsx *",
+    href: "https://github.com/lukeed/clsx",
+  },
+  {
+    label: "image-q **",
     href: "https://github.com/ibezkrovnyi/image-quantization",
   },
   {
-    label: "React Colorful **",
+    label: "React Colorful ***",
     href: "https://github.com/royeden/react-colorful/tree/merge-all-pending-prs-dist",
   },
 ];
@@ -124,12 +128,36 @@ const Home: NextPage = () => {
               ))}
               <div className="mt-2 flex flex-col space-y-2">
                 <small className="text-sm">
-                  * To be implemented in the near future! (their code is much
+                  * Ported with some fixes from{" "}
+                  <Button
+                    as="a"
+                    className="underline"
+                    external
+                    href="https://github.com/XaveScor/clsx/tree/smaller-size"
+                    size="none"
+                    theme="transparent"
+                  >
+                    this fork
+                  </Button>
+                  and
+                  <Button
+                    as="a"
+                    className="underline"
+                    external
+                    href="https://github.com/rokoroku/clsx/tree/patch-1"
+                    size="none"
+                    theme="transparent"
+                  >
+                    this one
+                  </Button>
+                </small>
+                <small className="text-sm">
+                  ** To be implemented in the near future! (their code is much
                   better than mine and it works much faster, this website is
                   just an experiment to test building most of it manually).
                 </small>
                 <small className="text-sm">
-                  ** Forked and merged all the contributions that were pending
+                  *** Forked and merged all the contributions that were pending
                   &amp; made some adjustments.
                 </small>
               </div>

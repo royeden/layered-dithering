@@ -15,7 +15,6 @@ export default function DraggableSortItem<T extends unknown>({
   item,
   onKeyDown,
 }: DraggableSortItemProps<T>) {
-  // TODO fix scroll issues with drag handle
   // https://codesandbox.io/s/reorder-touch-scrolling-bug-example-0f0z3?file=/src/Item.tsx
   const dragControls = useDragControls();
   const y = useMotionValue(0);
