@@ -137,9 +137,9 @@ const Home: NextPage = () => {
                     size="none"
                     theme="transparent"
                   >
-                    this fork
+                    this fork{" "}
                   </Button>
-                  and
+                  and{" "}
                   <Button
                     as="a"
                     className="underline"
@@ -165,7 +165,7 @@ const Home: NextPage = () => {
           </section>
 
           {/* TODO add index page */}
-          <Link href="/app" passHref>
+          <Link href="/app" passHref legacyBehavior>
             <Button as="a" className="max-w-xs" size="lg">
               Go to the app!
             </Button>

@@ -1,3 +1,4 @@
+// TODO update
 import { useRouter } from "next/router";
 import Link, { LinkProps } from "next/link";
 import React, {
@@ -58,7 +59,7 @@ const ActiveLink = ({
   ]);
 
   return (
-    <Link {...props}>
+    <Link {...props} legacyBehavior>
       {cloneElement(child, {
         className: className || null,
       })}

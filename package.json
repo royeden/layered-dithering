@@ -5,7 +5,7 @@
     "url": "https://github.com/royeden"
   },
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
