@@ -18,7 +18,7 @@ const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(
         className={containerClassName}
       >
         <ScrollAreaPrimitive.Viewport className={className}>
-          <div className="pr-3">{children}</div>
+          <div className="px-3">{children}</div>
         </ScrollAreaPrimitive.Viewport>
         <ScrollAreaPrimitive.ScrollAreaScrollbar
           className="flex touch-none select-none rounded-lg bg-gray-200 p-0.5 transition-colors duration-300 radix-orientation-vertical:w-2 dark:bg-gray-800"
