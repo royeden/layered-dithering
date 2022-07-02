@@ -21,14 +21,17 @@ export const PopoverContent = forwardRef(function PopoverContentWithRef(
       align={align ?? "center"}
       className={classNames(
         className,
-        "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down radix-side-left:animate-slide-left-fade radix-side-right:animate-slide-right-fade",
-        "w-full rounded-lg px-2 pb-2 pt-8 shadow-md sm:px-4 sm:pt-10 sm:pb-4",
-        "bg-white dark:bg-gray-700"
+        "z-10 rounded-lg bg-white px-2 pb-2 pt-8 shadow-md radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down radix-side-left:animate-slide-left-fade radix-side-right:animate-slide-right-fade dark:bg-gray-700 sm:px-4 sm:pt-12 sm:pb-4"
       )}
       sideOffset={4}
     >
       {children}
-      <PopoverPrimitive.Arrow className="fill-current text-white dark:text-gray-700" />
+      <PopoverPrimitive.Arrow
+        height={7}
+        width={12}
+        className="z-20 fill-current text-gray-700/5 dark:text-white/5"
+      />
+      <PopoverPrimitive.Arrow className="z-20 fill-current text-white dark:text-gray-700" />
       <PopoverPrimitive.Close
         className={classNames(
           "absolute top-1 right-1 inline-flex items-center justify-center rounded-full p-1 transition duration-300 sm:top-3.5 sm:right-3.5",
