@@ -147,7 +147,7 @@ export default function LayerPopoverForm({
       </Select>
       <div className="space-y-2">
         <p>Colors:</p>
-        <div className="grid w-full grid-cols-4 items-center justify-items-center gap-2">
+        <div className="grid w-full grid-cols-4 items-center gap-2">
           {clonedLayer.dithering.pallete.map(([from, to], pallete) => (
             <Fragment key={`${pallete}`}>
               <div className="col-span-3 flex items-center justify-between space-x-2">
@@ -185,6 +185,7 @@ export default function LayerPopoverForm({
               </div>
               {clonedLayer.dithering.pallete.length > 2 && (
                 <button
+                  className="flex w-full items-center justify-center"
                   onClick={() =>
                     updateClonedLayer((prevClonedLayer) => ({
                       dithering: {

@@ -36,7 +36,7 @@ export default function LayerPopoverContainer({
         </LayerButton>
       </PopoverTrigger>
       <PopoverContent
-        className="w-full max-w-xs grow space-y-2 md:max-w-lg"
+        className="w-80 min-w-full grow space-y-2 sm:w-96 md:max-w-lg"
         side={lg ? "right" : "top"}
       >
         <ScrollArea
@@ -49,12 +49,7 @@ export default function LayerPopoverContainer({
               "space-x-2 md:space-x-4": portrait,
             })}
           >
-            <div
-              className={classNames(
-                portrait ? "w-1/2" : "h-1/2",
-                "flex flex-col"
-              )}
-            >
+            <div className="flex w-full flex-col">
               <div className="sticky top-0">
                 <p>Preview:</p>
                 <div
@@ -81,10 +76,7 @@ export default function LayerPopoverContainer({
             </div>
             <LayerPopoverForm
               autoupdate={true}
-              className={classNames(
-                portrait ? "w-1/2" : "h-1/2",
-                "shrink-0 grow"
-              )}
+              className={classNames(portrait ? "w-1/2" : "h-1/2", "shrink-0")}
               layer={layer}
             />
           </div>
