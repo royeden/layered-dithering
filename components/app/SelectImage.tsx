@@ -1,9 +1,8 @@
-import { DEFAULT_LAYER_FACTORY, Layer } from "../../lib/constants/layers";
+import { DEFAULT_LAYER_FACTORY } from "../../lib/constants/layers";
 import useToggle from "../../lib/hooks/useToggle";
 import { createImage, resizeImage } from "../../lib/utils/image";
 import { useDeviceContext } from "../context/DeviceContext";
 import { useLayersContext } from "../context/LayersContext";
-import Button from "../UI/Button";
 import Card from "../UI/Card";
 import FileInput from "../UI/FileInput";
 import Spinner from "../UI/Spinner";

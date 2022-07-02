@@ -35,7 +35,7 @@ const App: NextPage<Props> = ({ device }) => {
             <SelectImage />
             <div className="flex max-h-full w-full flex-1 flex-col-reverse lg:flex-row">
               <LayersEditor className="min-h-full grow" />
-              <ProcessedImage containerClassName="sticky top-0 py-2" />
+              <ProcessedImage containerClassName="sticky top-0 pb-2" />
             </div>
           </main>
         </LayersProvider>
