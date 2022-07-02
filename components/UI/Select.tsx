@@ -28,7 +28,9 @@ export const Select = forwardRef(function SelectWithRef(
           ref={forwardedRef}
         >
           <Button size="sm">
-            <SelectPrimitive.Value />
+            <SelectPrimitive.Value asChild>
+              <span className="w-full truncate">{props.value}</span>
+            </SelectPrimitive.Value>
             <SelectPrimitive.Icon>
               <ChevronDownIcon />
             </SelectPrimitive.Icon>
@@ -59,7 +61,7 @@ export const SelectItem = forwardRef(function SelectItemWithRef(
   return (
     <SelectPrimitive.Item
       className={classNames(
-        "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-gray-700 focus:bg-indigo-500 focus:text-white dark:text-white dark:focus:bg-purple-500",
+        "relative flex items-center rounded-md px-8 py-2 text-sm font-medium text-gray-700 focus:bg-indigo-600 focus:text-white dark:text-white",
         "radix-disabled:opacity-50",
         "select-none focus:outline-none"
       )}
