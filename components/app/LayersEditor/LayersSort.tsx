@@ -26,7 +26,7 @@ export default function LayersSort(props: LayersSortProps) {
       )}
       <ScrollArea
         containerClassName="max-h-full grow flex"
-        className="min-h-full grow p-1 pl-3"
+        className="min-h-full grow p-1"
       >
         <DraggableSort
           className="space-y-4"
