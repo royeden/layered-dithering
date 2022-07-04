@@ -76,20 +76,23 @@ export default function LayerColors({ onChange, value }: LayerColorsProps) {
         className="w-full"
         onClick={() =>
           setPallete((prevPallete) => {
-            const newPallete = prevPallete.concat([
-              createColor([
-                random(0, 255),
-                random(0, 255),
-                random(0, 255),
-                255,
-              ]),
-              createColor([
-                random(0, 255),
-                random(0, 255),
-                random(0, 255),
-                random(0, 255),
-              ]),
-            ]) as Layer["dithering"]["pallete"];
+            const newPallete = [
+              ...prevPallete,
+              [
+                createColor([
+                  random(0, 255),
+                  random(0, 255),
+                  random(0, 255),
+                  255,
+                ]),
+                createColor([
+                  random(0, 255),
+                  random(0, 255),
+                  random(0, 255),
+                  random(0, 255),
+                ]),
+              ],
+            ] as Layer["dithering"]["pallete"];
             onChange(newPallete);
             return newPallete;
           })
