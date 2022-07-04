@@ -1,3 +1,4 @@
+// TODO move to utils
 import { COLOR_PROCESSING_ALGORITHMS } from "./color-processing-algorithms";
 import {
   DiffusionMatrix,
@@ -35,7 +36,7 @@ export type Layer = {
   };
 };
 
-export const DEFAULT_LAYER_FACTORY: () => Omit<Layer, "id" | "src"> = () => {
+export function layerFactory(layer: Pick<Layer, "src">): Omit<Layer, "id"> {
   const methods = Object.keys(COLOR_PROCESSING_ALGORITHMS).concat(
     Object.keys(ERROR_DIFFUSION_MATRIXES)
   ) as
@@ -79,13 +80,13 @@ export const DEFAULT_LAYER_FACTORY: () => Omit<Layer, "id" | "src"> = () => {
       config: {
         colorSpace: "RGB",
       },
-      pallete,
       method,
+      pallete,
     },
-    loading: false,
+    src: layer.src,
     transformations: {
       blendMode: "source-over",
       opacity: 100,
     },
   };
-};
+}

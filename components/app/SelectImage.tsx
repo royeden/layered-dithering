@@ -1,5 +1,5 @@
-import { DEFAULT_LAYER_FACTORY } from "../../lib/constants/layers";
-import useToggle from "../../lib/hooks/useToggle";
+import { useState } from "react";
+import { layerFactory } from "../../lib/constants/layers";
 import { createImage, resizeImage } from "../../lib/utils/image";
 import { useDeviceContext } from "../context/DeviceContext";
 import { useLayersContext } from "../context/LayersContext";
@@ -12,15 +12,19 @@ export interface SelectImageProps {}
 export default function SelectImage(props: SelectImageProps) {
   const { addLayer, layers } = useLayersContext();
 
-  const [loading, toggleLoading] = useToggle(false);
-  const handleChange = async (file: File) => {
-    toggleLoading(true);
-    const url = URL.createObjectURL(file);
-    const image = await createImage(url);
-    const resized = await resizeImage(image, 640);
-    addLayer(Object.assign(DEFAULT_LAYER_FACTORY(), { src: resized }));
-    toggleLoading(false);
-    URL.revokeObjectURL(url);
+  const [loading, setLoading] = useState(false);
+  const handleChange = (file: File) => {
+    setLoading(true);
+    setTimeout(async () => {
+      const url = URL.createObjectURL(file);
+      const image = await createImage(url);
+      const resized = await resizeImage(image, 640);
+      addLayer(layerFactory({ src: resized }));
+      // TODO support native image sizes / custom image sizes
+      // addLayer(layerFactory({ src: image }));
+      setLoading(false);
+      URL.revokeObjectURL(url);
+    }, 100);
   };
 
   const { isMobile } = useDeviceContext();
@@ -37,7 +41,9 @@ export default function SelectImage(props: SelectImageProps) {
           <p className="w-full text-center">Let&apos;s try it out 😃</p>
           <div>
             {loading ? (
-              <Spinner />
+              <div className="flex w-full justify-center">
+                <Spinner className="h-6 w-6" />
+              </div>
             ) : (
               <FileInput
                 accept="image/*"

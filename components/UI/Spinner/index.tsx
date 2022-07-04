@@ -1,5 +1,5 @@
-import { m } from "framer-motion";
-import classNames from "../../lib/utils/classNames";
+import styles from "./spinner.module.css";
+import classNames from "../../../lib/utils/classNames";
 
 export interface SpinnerProps {
   className?: string;
@@ -24,30 +24,20 @@ export default function Spinner({ className }: SpinnerProps) {
   return (
     <div className={classNames("grid overflow-hidden rounded-full", className)}>
       {COLORS.map((color, i) => (
-        <m.span
-          animate={{
-            opacity: [0, 1, 0],
-            rotate: [0, 360],
-          }}
+        <span
           style={{
-            y: "50%",
-            originX: "center",
-            originY: "top",
+            animation: `1s linear ${i / COLORS.length}s infinite ${
+              styles.spinner
+            }`,
             gridColumn: 1,
             gridRow: 1,
-          }}
-          transition={{
-            delay: i / 12,
-            duration: 1,
-            type: "tween",
-            repeat: Infinity,
-            // repeatType: "mirror",
+            opacity: 0,
           }}
           key={color}
           className="block h-full w-full"
         >
           <span className={classNames("block h-1/2 w-1/2 rotate-45", color)} />
-        </m.span>
+        </span>
       ))}
     </div>
   );

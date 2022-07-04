@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { DEFAULT_LAYER_FACTORY } from "../../../lib/constants/layers";
+import { layerFactory } from "../../../lib/constants/layers";
 import classNames from "../../../lib/utils/classNames";
 import { useLayersContext } from "../../context/LayersContext";
 import Card from "../../UI/Card";
@@ -30,14 +30,7 @@ export default function LayersEditor({
       </div>
       <LayersSort />
       <LayerButton
-        onClick={() =>
-          addLayer(
-            Object.assign(DEFAULT_LAYER_FACTORY(), {
-              // TODO add src per layer
-              src: layers?.[0]?.src,
-            })
-          )
-        }
+        onClick={() => addLayer(layerFactory({ src: layers?.[0]?.src }))}
       >
         Add layer
       </LayerButton>
