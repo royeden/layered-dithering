@@ -8,6 +8,9 @@ import {
   ImageCache,
   transformLayers,
 } from "../utils/layers";
+import { SetPartialStateAction } from "../utils/react";
+
+export type LayerUpdate = Partial<Omit<Layer, "id" | "src">>;
 
 export default function useLayers() {
   const [layers, setLayers] = useState<Layer[]>([]);
@@ -73,15 +76,29 @@ export default function useLayers() {
   const removeLayer = (id: Layer["id"]) =>
     setLayers((prevLayers) => prevLayers.filter((layer) => layer.id !== id));
 
-  const updateLayer = (layer: { id: Layer["id"] } & Partial<Layer>) =>
+  const updateLayer = (
+    id: Layer["id"],
+    update: SetPartialStateAction<Layer, LayerUpdate>
+  ) =>
     setLayers((prevLayers) =>
-      prevLayers.map((prevLayer) =>
-        prevLayer.id === layer.id ? { ...prevLayer, ...layer } : prevLayer
-      )
+      prevLayers.map((prevLayer) => {
+        const layer = typeof update === "function" ? update(prevLayer) : update;
+        return prevLayer.id === id
+          ? {
+              id,
+              dithering: layer.dithering ?? prevLayer.dithering,
+              src: prevLayer.src,
+              transformations:
+                layer.transformations ?? prevLayer.transformations,
+            }
+          : prevLayer;
+      })
     );
 
   const getDitheredLayerPreview = (layer: Layer) =>
-    cache.current?.[layer.id]?.[getDitherLayerCacheKey(layer.dithering)];
+    cache.current?.[layer.id]?.[getDitherLayerCacheKey(layer.dithering)] as
+      | HTMLImageElement
+      | undefined;
 
   const getTransformedLayerPreview = (layer: Layer) =>
     cache.current?.[layer.id]?.[
@@ -89,7 +106,7 @@ export default function useLayers() {
         getLayerTransformations(layer.transformations),
         layer
       )
-    ];
+    ] as HTMLImageElement | undefined;
 
   return {
     addLayer,

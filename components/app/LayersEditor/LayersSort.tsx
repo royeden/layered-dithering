@@ -20,8 +20,8 @@ export default function LayersSort(props: LayersSortProps) {
     <div className="space-y-2">
       {layers.length > 1 && (
         <p className="text-center text-sm italic">
-          Drag and drop {!isMobile && "or use the arrow keys"} to sort the
-          items...
+          Drag &amp; drop {!isMobile && "or use the arrow keys"} to sort the
+          items
         </p>
       )}
       <ScrollArea

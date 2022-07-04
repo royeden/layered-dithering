@@ -25,3 +25,7 @@ export type PolymorphicComponentPropWithRef<
   C extends ElementType,
   Props = {}
 > = PolymorphicComponentProp<C, Props> & { ref?: PolymorphicRef<C> };
+
+export type SetPartialStateAction<T, P extends Partial<T>> =
+  | P
+  | ((prevState: T) => P);
